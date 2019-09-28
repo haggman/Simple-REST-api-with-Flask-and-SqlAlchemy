@@ -64,3 +64,30 @@ URL | Verb | Input JSON (if any) | Response
 /customers | GET | N/A | JSON list of customers (don't forget to add some examples to your database!)
 /customer/<cust_id> | GET | N/A | A single customer as JSON
 /customer | POST | A JSON customer object (use same format as a customer from the customer list. The cust_id will be ignored if provided | Success or failure message
+
+##Key components:
+### config.py
+Here's where you'll find the database URI. I'm going really basic
+and have the username and password right in the config file. Fine 
+for testing but please don't take it to production. You can update
+the URI to suite your needs. 
+
+###app.py
+This is the main Flask based application driver. You can run it to start
+the flask web server. Here's where you'll find all the route and verb
+mappings.
+
+### data_access.BookDAO
+Class contains a couple of methods to get a list of books and add a new book. 
+The book list is hard coded in the class file.
+
+### data_access.models
+Contains the Customer class, which is designed to work with
+SqlAlchemy. Besides the standard Column setup, data attributes,
+and constructor, you'll also find a couple of helper serialize/deserialize static methods. 
+
+### data_access.CustomerDAO
+Here you'll find the data access object that drives the 
+customer related functionality. Besides methods to get a list of books, get a book,
+and to add a book, you'll find some variations
+ designed to work better with JSON.
